@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>لوحة التحكم - عيادة العلاج الطبيعي</title>
+<link rel="stylesheet" href="style.css">
+<script src="auth.js"></script>
+<script>requireAuth();</script>
+</head>
+<body>
+
+<header class="main-header">
+  <div class="container header-content">
+    <div class="logo">
+      <span class="logo-icon">🏥</span>
+      <h1>عيادة العلاج الطبيعي</h1>
+    </div>
+    <nav>
+      <a href="index.html">حجز موعد</a>
+      <a href="admin.html" class="active">لوحة التحكم</a>
+      <a href="appointments.html">المواعيد</a>
+      <a href="change-password.html">🔐 كلمة المرور</a>
+      <a href="#" onclick="logout();return false;" class="logout-link">🚪 خروج</a>
+    </nav>
+  </div>
+</header>
+
+<div class="user-bar">
+  <div class="container user-bar-content">
+    <span>👤 مرحباً، <strong id="welcomeUser">—</strong></span>
+    <span id="sessionTimer" class="session-timer">⏱️ الجلسة: —</span>
+  </div>
+</div>
+
+<main class="container">
+  <section class="admin-section">
+    <div class="card">
+      <h2>⚙️ إعدادات العيادة</h2>
+
+      <div class="form-group">
+        <label for="doctorCount">👨‍⚕️ عدد الأطباء المتاحين</label>
+        <input type="number" id="doctorCount" min="1" max="20" value="3">
+        <small class="hint">تغيير العدد يؤثر مباشرة على الأوقات المتاحة للحجز.</small>
+      </div>
+
+      <div class="form-group">
+        <label>🕒 الفترة الزمنية (ثابتة)</label>
+        <div class="info-box">
+          من <strong>10:00 صباحاً</strong> إلى <strong>12:00 منتصف الليل</strong>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="sessionDuration">⏱️ مدة الجلسة (دقيقة)</label>
+        <input type="number" id="sessionDuration" min="15" max="120" value="30" step="15">
+      </div>
+
+      <button id="saveSettingsBtn" class="btn-primary">💾 حفظ الإعدادات</button>
+      <div id="adminMessage" class="message"></div>
+    </div>
+
+    <div class="card">
+      <h2>📊 ملخص اليوم (مواعيد الغد)</h2>
+      <div class="stats-grid">
+        <div class="stat-box">
+          <div class="stat-value" id="statDoctors">0</div>
+          <div class="stat-label">عدد الأطباء</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-value" id="statSlots">0</div>
+          <div class="stat-label">إجمالي الفترات</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-value" id="statBooked">0</div>
+          <div class="stat-label">محجوزة</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-value" id="statAvailable">0</div>
+          <div class="stat-label">متاحة</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>🗑️ إدارة البيانات</h2>
+      <button id="clearAllBtn" class="btn-danger" style="padding:12px 20px;font-size:15px;">
+        حذف جميع المواعيد
+      </button>
+      <div id="clearMessage" class="message"></div>
+    </div>
+  </section>
+</main>
+
+<footer class="main-footer">
+  <p>© 2025 عيادة العلاج الطبيعي - جميع الحقوق محفوظة</p>
+</footer>
+
+<script src="data.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>

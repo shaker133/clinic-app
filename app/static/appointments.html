@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>المواعيد - عيادة العلاج الطبيعي</title>
+<link rel="stylesheet" href="style.css">
+<script src="auth.js"></script>
+<script>requireAuth();</script>
+</head>
+<body>
+
+<header class="main-header">
+  <div class="container header-content">
+    <div class="logo">
+      <span class="logo-icon">🏥</span>
+      <h1>عيادة العلاج الطبيعي</h1>
+    </div>
+    <nav>
+      <a href="index.html">حجز موعد</a>
+      <a href="admin.html">لوحة التحكم</a>
+      <a href="appointments.html" class="active">المواعيد</a>
+      <a href="change-password.html">🔐 كلمة المرور</a>
+      <a href="#" onclick="logout();return false;" class="logout-link">🚪 خروج</a>
+    </nav>
+  </div>
+</header>
+
+<div class="user-bar">
+  <div class="container user-bar-content">
+    <span>👤 مرحباً، <strong id="welcomeUser">—</strong></span>
+    <span id="sessionTimer" class="session-timer">⏱️ الجلسة: —</span>
+  </div>
+</div>
+
+<main class="container">
+  <section class="appointments-section">
+    <div class="card">
+      <h2>📋 قائمة المواعيد</h2>
+      <div class="table-wrapper">
+        <table id="appointmentsTable">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>اسم الحالة</th>
+              <th>الهاتف</th>
+              <th>التاريخ</th>
+              <th>الوقت</th>
+              <th>الطبيب</th>
+              <th>الحالة</th>
+              <th>إجراء</th>
+            </tr>
+          </thead>
+          <tbody id="appointmentsBody">
+            <tr><td colspan="8" class="empty">لا توجد مواعيد بعد.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="main-footer">
+  <p>© 2025 عيادة العلاج الطبيعي - جميع الحقوق محفوظة</p>
+</footer>
+
+<script src="data.js"></script>
+<script src="appointments.js"></script>
+</body>
+</html>

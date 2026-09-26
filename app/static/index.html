@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>حجز موعد - عيادة العلاج الطبيعي</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="main-header">
+  <div class="container header-content">
+    <div class="logo">
+      <span class="logo-icon">🏥</span>
+      <h1>عيادة العلاج الطبيعي</h1>
+    </div>
+    <nav>
+      <a href="index.html" class="active">حجز موعد</a>
+      <a href="login.html" class="login-nav-link">🔐 دخول الإدارة</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <section class="booking-section">
+    <div class="card">
+      <h2>📅 احجز موعدك</h2>
+      <p class="hint">
+        يتم الحجز ليوم <strong>الغد فقط</strong>. اختر الوقت المتاح وسيتم توزيعك تلقائياً على أحد الأطباء.
+      </p>
+
+      <div class="date-display">
+        <label>📆 تاريخ الموعد:</label>
+        <div class="date-box" id="appointmentDate">—</div>
+      </div>
+
+      <div class="form-group">
+        <label for="patientName">👤 اسم الحالة</label>
+        <input type="text" id="patientName" placeholder="أدخل الاسم الكامل" required>
+      </div>
+
+      <div class="form-group">
+        <label for="patientPhone">📱 رقم الهاتف</label>
+        <input type="tel" id="patientPhone" placeholder="01xxxxxxxxx" required>
+      </div>
+
+      <div class="form-group">
+        <label>⏰ اختر الوقت المتاح</label>
+        <div id="timeSlots" class="time-slots">
+          <div class="loading">جاري تحميل الأوقات المتاحة...</div>
+        </div>
+      </div>
+
+      <button id="bookBtn" class="btn-primary" disabled>✅ تأكيد الحجز</button>
+      <div id="message" class="message"></div>
+    </div>
+  </section>
+</main>
+
+<footer class="main-footer">
+  <p>© 2025 عيادة العلاج الطبيعي - جميع الحقوق محفوظة</p>
+</footer>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

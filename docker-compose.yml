@@ -1,0 +1,23 @@
+version: '3.9'
+
+services:
+  clinic-app:
+    build: .
+    container_name: clinic-app
+    image: clinic-app:latest
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_ENV=production
+      - JWT_SECRET_KEY=ChangeMeInProduction_Strong_Secret_Key_2025_XYZ
+      - TZ=Africa/Cairo
+    volumes:
+      # حفظ قاعدة البيانات على المضيف (persistent)
+      - ./data:/app/data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s

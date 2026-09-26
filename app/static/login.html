@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تسجيل الدخول - عيادة العلاج الطبيعي</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="login-body">
+
+<div class="login-wrapper">
+  <div class="login-card">
+    <div class="login-header">
+      <span class="login-icon">🏥</span>
+      <h1>عيادة العلاج الطبيعي</h1>
+      <p>تسجيل الدخول للوحة التحكم</p>
+    </div>
+
+    <form id="loginForm" autocomplete="off">
+      <div class="form-group">
+        <label for="username">👤 اسم المستخدم</label>
+        <input type="text" id="username" placeholder="أدخل اسم المستخدم" required autofocus>
+      </div>
+
+      <div class="form-group">
+        <label for="password">🔒 كلمة المرور</label>
+        <div class="password-wrapper">
+          <input type="password" id="password" placeholder="أدخل كلمة المرور" required>
+          <button type="button" class="toggle-pass" id="togglePass" title="إظهار/إخفاء">👁️</button>
+        </div>
+      </div>
+
+      <button type="submit" class="btn-primary">🔓 تسجيل الدخول</button>
+
+      <div id="loginMessage" class="message"></div>
+
+      <div class="login-hint">
+        <p>🔑 بيانات الدخول الافتراضية:</p>
+        <code>admin / admin123</code>
+      </div>
+    </form>
+
+    <div class="login-footer">
+      <a href="index.html">← العودة لصفحة الحجز</a>
+    </div>
+  </div>
+</div>
+
+<script src="auth.js"></script>
+<script>
+  // إذا كان مسجل دخول بالفعل، انتقل للوحة التحكم
+  if (isLoggedIn()) {
+    window.location.href = 'admin.html';
+  }
+
+  document.getElementById('loginForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const username = document.getElementById('username').value.trim();
+    const password = document.getElementById('password').value;
+    const msgEl = document.getElementById('loginMessage');
+
+    const result = login(username, password);
+
+    if (result.success) {
+      msgEl.textContent = '✅ تم تسجيل الدخول بنجاح... جاري التحويل';
+      msgEl.className = 'message success';
+      setTimeout(() => {
+        window.location.href = 'admin.html';
+      }, 800);
+    } else {
+      msgEl.textContent = '❌ ' + result.message;
+      msgEl.className = 'message error';
+      document.getElementById('password').value = '';
+    }
+  });
+
+  // إظهار / إخفاء كلمة المرور
+  document.getElementById('togglePass').addEventListener('click', function() {
+    const inp = document.getElementById('password');
+    inp.type = inp.type === 'password' ? 'text' : 'password';
+    this.textContent = inp.type === 'password' ? '👁️' : '🙈';
+  });
+</script>
+</body>
+</html>
